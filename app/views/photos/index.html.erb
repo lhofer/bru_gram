@@ -1,0 +1,17 @@
+<h1>Photo Index</h1>
+
+<% if user_signed_in? %>
+	<h3><%= link_to 'New Photo', new_user_photo_path(current_user, @photo) %></h3>
+	<h3><%= link_to 'Photo Feed', root_path%></h3>
+
+<% @photos.each do |photo| %>
+	<div>
+		Public: <%= photo.public %>
+		<%= link_to image_tag photo.url %>
+		<%= photo.caption %>
+		<%= link_to 'Edit photo', edit_user_photo_path(current_user, photo) %>
+	</div>
+<% end %>
+
+<% end %>
+

@@ -1,0 +1,13 @@
+<h1>Test Welcome Index</h1>
+
+<% if user_signed_in? %>
+	<h3><%= link_to 'Your Photos', user_photos_path(current_user)%></h3>
+	<h3><%= link_to 'New Photo', new_user_photo_path(current_user) %></h3>
+<% end %>
+
+<% @photos.each do |photo| %>
+	<% if photo.public %>
+		<%= link_to image_tag photo.url %>
+		<%= photo.caption %>
+	<% end %>
+<% end %>

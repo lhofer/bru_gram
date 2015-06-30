@@ -1,0 +1,6 @@
+<%= simple_form_for([current_user, @photo]) do |f| %>
+  <%= f.input :public %>
+  <%= f.input :caption %>
+  <%= f.input :url %>
+  <%= f.button :submit %>
+<% end %>
