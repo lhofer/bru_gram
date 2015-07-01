@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-	#before_action :authenticate_user!, except: [:index]
+	before_action :authenticate_user!
 	
 	def index
 		@photos = current_user.photos
@@ -26,11 +26,21 @@ class PhotosController < ApplicationController
 	def update
 		@photo =current_user.photos.find(params[:id])
 
-		if @photo.update(cost_params)
-			link_to user_photos_path
+		if @photo.update(photo_params)
+			redirect_to user_photos_path
 		else
 			render 'edit'
 		end
+	end
+
+	def destroy
+		@photo = current_user.photos.find(params[:id])
+		@photo.delete
+		redirect_to user_photos_path(current_user)
+	end
+
+	def show
+		@photo = current_user.photos.find(params[:id])
 	end
 
 	private

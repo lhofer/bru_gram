@@ -7,9 +7,12 @@
 <% @photos.each do |photo| %>
 	<div>
 		Public: <%= photo.public %>
-		<%= link_to image_tag photo.url %>
+		<%= link_to image_tag(photo.url), user_photo_path(current_user, photo) %>
 		<%= photo.caption %>
 		<%= link_to 'Edit photo', edit_user_photo_path(current_user, photo) %>
+		<%= link_to 'Delete photo', user_photo_path(current_user, photo),
+			method: :delete,
+			data: { confirm: 'Are you sure?' } %>
 	</div>
 <% end %>
 
